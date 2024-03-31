@@ -1,12 +1,6 @@
 name: Run Playwright Tests
 
-on:
-  push:
-    branches:
-      - main  # Change this to your main branch name
-  pull_request:
-    branches:
-      - main  # Change this to your main branch name
+on: [push, pull_request]
 
 jobs:
   test:
@@ -23,6 +17,9 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+
+    - name: Install Microsoft Edge
+      run: sudo apt-get update && sudo apt-get install -y wget gnupg && curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg && echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge-dev.list && sudo apt-get update && sudo apt-get install -y microsoft-edge-dev
 
     - name: Run tests
       run: npm test
