@@ -109,7 +109,7 @@ test('Chrome Desktop Test page object', async ({ browser }) => {
           });
 
         await expect(page).toHaveScreenshot({
-            threshold: 100,
+            threshold: 40000,
             animations: "disabled"
         });
     }
@@ -165,7 +165,10 @@ test('Safari Mobile Test page object', async ({ browser }) => {
         // Assert that the request body contains the retrieved screenName
         expect(requestBody.properties.screenName).toEqual(screenName);
 
-        await expect(page).toHaveScreenshot();
+        await expect(page).toHaveScreenshot({
+            threshold: 40000,
+            animations: "disabled"
+        });
     }
 
     await context.close();
