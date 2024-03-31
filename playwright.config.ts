@@ -45,7 +45,7 @@ export default defineConfig({
     trace: 'retain-on-failure',
 
     // set headless
-    headless: false,
+    headless: true,
 
     // testId 
     testIdAttribute: 'id',
